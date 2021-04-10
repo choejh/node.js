@@ -17,6 +17,26 @@ app.use(express.static('public'));
 //일반적으로 url접속은 get방식!
 //get방식 접속 사용자 2번째 인자로 전달한 함수가 실행되도록 약속
 //get(~) <- 라우터라 말함 (사용자의 요청과 처리인 controller를 중개시켜주는 역할)
+
+//쿼리스트링
+app.get('/topic', function(req,res){
+    var topics = [
+        'Javascript is ...',
+        'Nodejs is ...',
+        'Express is ...'
+    ];
+    var output = `
+        <a href="/topic?id=0">JAVAScript</a><br>
+        <a href="/topic?id=1">Nodejs</a><br>
+        <a href="/topic?id=2">Express</a><br>
+        ${topics[req.query.id]}
+    `
+    res.send(output);
+})
+
+//시맨틱 url
+
+
 app.get('/template',function(req,res){
     res.render('temp',{time:Date(),_title:'jade'}); //temp파일 읽어오고 렌더링
 
