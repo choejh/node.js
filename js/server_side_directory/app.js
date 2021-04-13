@@ -18,6 +18,27 @@ app.use(express.static('public'));
 //get방식 접속 사용자 2번째 인자로 전달한 함수가 실행되도록 약속
 //get(~) <- 라우터라 말함 (사용자의 요청과 처리인 controller를 중개시켜주는 역할)
 
+
+//form
+app.get('/form',function(req,res){
+    res.render('form');
+})
+
+//form-get
+app.get('/form_receiver', function(req,res){
+    var title = req.query.title;
+    res.send(title);
+})
+
+//form-post
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended:false}));
+
+app.post('/form_receiver',function(req,res){
+    var title = req.body.title;
+    res.send(title);
+})
+
 //쿼리스트링
 app.get('/topic', function(req,res){
     var topics = [
